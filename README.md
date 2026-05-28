@@ -1,16 +1,139 @@
-# React + Vite
+# Media Search App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern media search application built with React, Redux Toolkit, and Tailwind CSS that allows users to search and explore photos, videos, and GIFs from multiple APIs.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Features
 
-## React Compiler
+* Search Photos using Unsplash API
+* Search Videos using Pexels API
+* Search GIFs using GIPHY API
+* Responsive media grid layout
+* Dynamic tab-based filtering
+* Pagination support
+* Video hover autoplay
+* Download photos/videos directly from cards
+* Loading and error state handling
+* Global state management with Redux Toolkit
+* Reusable UI components
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Tech Stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* React.js
+* Redux Toolkit
+* JavaScript (ES6+)
+* Tailwind CSS
+* Vite
+* Fetch API
+* REST APIs
+
+---
+
+## APIs Used
+
+* Unsplash API
+* Pexels API
+* GIPHY API
+
+---
+
+## Folder Structure
+
+src/
+├── api/
+│   ├── mediaApi.js
+│
+├── components/
+│   ├── SearchBar.jsx
+│   ├── Tabs.jsx
+│   ├── ResultGrid.jsx
+│   ├── ResultCard.jsx
+│   ├── Pagination.jsx
+│
+├── redux/
+│   ├── store.js
+│   └── features/
+│       └── searchSlice.js
+
+---
+
+## Environment Variables
+
+Create a `.env` file in the root directory and add:
+
+```env
+VITE_UNSPLASH_KEY=your_unsplash_api_key
+VITE_PEXELS_KEY=your_pexels_api_key
+VITE_GIPHY_KEY=your_giphy_api_key
+```
+
+---
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone <your-repository-url>
+```
+
+Move into the project folder:
+
+```bash
+cd media-search-app
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
+
+```bash
+npm run dev
+```
+
+---
+
+## Build for Production
+
+```bash
+npm run build
+```
+
+---
+
+## Concepts Implemented
+
+* Async API fetching with Fetch API
+* Redux Toolkit global state management
+* React Hooks (`useEffect`, `useSelector`, `useDispatch`, `useRef`)
+* Conditional rendering
+* Data normalization across APIs
+* Pagination handling
+* Responsive UI design
+* Media handling and downloads
+* Error and loading state management
+
+---
+
+## Future Improvements
+
+* Infinite scrolling
+* Masonry layout
+* Debounced search
+* Favorites / bookmarks
+* Authentication
+* Dark / light theme toggle
+* Media preview modal
+
+---
+
+## Author
+
+Built by Dipur Movies
