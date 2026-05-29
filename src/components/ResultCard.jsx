@@ -5,21 +5,27 @@ import {
   RiBookmarkFill,
 } from "@remixicon/react";
 import { useDispatch, useSelector } from "react-redux";
+import {
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import { toast } from "react-toastify";
 import {
   addCollection,
   removeCollection,
 } from "../redux/features/collectionSlice";
 
-const ResultCard = ({
-  item,
-  onPreviewOpen,
-}) => {
+const ResultCard = ({ item }) => {
   const videoRef = useRef(null);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
 
-  const collectionItems = useSelector(
-    (state) => state.collection.items
+  const { items: collectionItems } = useSelector(
+    (state) => state.collection
+  );
+  const currentQuery = useSelector(
+    (state) => state.search.query
   );
 
   const saved = collectionItems.some(
@@ -86,7 +92,18 @@ const ResultCard = ({
   return (
     <>
       <div
-        onClick={() => onPreviewOpen(item)}
+        onClick={() =>
+          navigate(
+            `/media/${item.type}/${item.id}`,
+            {
+              state: {
+                item,
+                from: location.pathname,
+                relatedQuery: currentQuery,
+              },
+            }
+          )
+        }
         onMouseEnter={playVideo}
         onMouseLeave={pauseVideo}
         className="

@@ -259,6 +259,7 @@ const Navbar = ({
               className="
                 p-2
                 rounded-lg
+                cursor-pointer
                 text-gray-500
                 dark:text-slate-300
                 hover:bg-gray-100
@@ -354,6 +355,7 @@ const Navbar = ({
               py-1.5
               rounded-xl
               text-xs
+              cursor-pointer
               ${
                 isSettingsOpen
                   ? "text-blue-600 bg-blue-100 dark:bg-slate-700"
@@ -384,7 +386,7 @@ const Navbar = ({
       >
         <button
           onClick={closeSettings}
-          className="absolute inset-0 bg-black/35"
+          className="absolute inset-0 bg-black/35 cursor-pointer"
           aria-label="Close settings"
         />
 
@@ -423,7 +425,7 @@ const Navbar = ({
 
             <button
               onClick={closeSettings}
-              className="p-2 rounded-lg text-gray-500 dark:text-slate-300"
+              className="p-2 rounded-lg cursor-pointer text-gray-500 dark:text-slate-300"
             >
               <RiCloseLine size={20} />
             </button>

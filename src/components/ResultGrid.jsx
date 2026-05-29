@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import Masonry from "react-masonry-css";
 import { useInView } from "react-intersection-observer";
 
@@ -17,7 +17,6 @@ import {
 } from "../redux/features/searchSlice";
 
 import ResultCard from "./ResultCard";
-import MediaPreviewModal from "./MediaPreviewModal";
 import GsapLoader from "./GsapLoader";
 
 const pickVideoSources = (videoFiles = []) => {
@@ -61,9 +60,6 @@ const pickVideoSources = (videoFiles = []) => {
 
 const ResultGrid = () => {
   const dispatch = useDispatch();
-
-  const [previewItem, setPreviewItem] =
-    useState(null);
 
   const {
     query,
@@ -386,7 +382,6 @@ const ResultGrid = () => {
           <ResultCard
             key={`${item.type}-${item.id}`}
             item={item}
-            onPreviewOpen={setPreviewItem}
           />
         ))}
       </Masonry>
@@ -411,14 +406,6 @@ const ResultGrid = () => {
           You have reached the end.
         </div>
       )}
-
-      <MediaPreviewModal
-        item={previewItem}
-        isOpen={Boolean(previewItem)}
-        onClose={() =>
-          setPreviewItem(null)
-        }
-      />
     </div>
   );
 };

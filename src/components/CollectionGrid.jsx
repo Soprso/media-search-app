@@ -1,15 +1,11 @@
-import { useState } from "react";
 import Masonry from "react-masonry-css";
 import { useSelector } from "react-redux";
 import CollectionCard from "./CollectionCard";
-import MediaPreviewModal from "./MediaPreviewModal";
 
 const CollectionGrid = () => {
   const collectionItems = useSelector(
     (state) => state.collection.items
   );
-  const [previewItem, setPreviewItem] =
-    useState(null);
 
   const breakpointColumnsObj = {
     default: 5,
@@ -44,18 +40,9 @@ const CollectionGrid = () => {
           <CollectionCard
             key={`${item.type}-${item.id}`}
             item={item}
-            onPreviewOpen={setPreviewItem}
           />
         ))}
       </Masonry>
-
-      <MediaPreviewModal
-        item={previewItem}
-        isOpen={Boolean(previewItem)}
-        onClose={() =>
-          setPreviewItem(null)
-        }
-      />
     </div>
   );
 };

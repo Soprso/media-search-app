@@ -4,15 +4,18 @@ import {
   RiDeleteBin6Line,
 } from "@remixicon/react";
 import { useDispatch } from "react-redux";
+import {
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import { toast } from "react-toastify";
 import { removeCollection } from "../redux/features/collectionSlice";
 
-const CollectionCard = ({
-  item,
-  onPreviewOpen,
-}) => {
+const CollectionCard = ({ item }) => {
   const videoRef = useRef(null);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const playVideo = () => {
     if (
@@ -72,7 +75,17 @@ const CollectionCard = ({
   return (
     <>
       <div
-        onClick={() => onPreviewOpen(item)}
+        onClick={() =>
+          navigate(
+            `/media/${item.type}/${item.id}`,
+            {
+              state: {
+                item,
+                from: location.pathname,
+              },
+            }
+          )
+        }
         onMouseEnter={playVideo}
         onMouseLeave={pauseVideo}
         className="group relative overflow-hidden rounded-2xl bg-white dark:bg-slate-900 shadow-sm hover:shadow-xl transition-all duration-300 break-inside-avoid cursor-pointer"

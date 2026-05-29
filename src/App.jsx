@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import HomePage from "./pages/HomePage";
 import CollectionPage from "./pages/CollectionPage";
+import MediaDetailsPage from "./pages/MediaDetailsPage";
 
 import Navbar from "./components/Navbar";
 
@@ -77,6 +78,10 @@ const App = () => {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/collection" element={<CollectionPage />} />
+          <Route
+            path="/media/:type/:id"
+            element={<MediaDetailsPage />}
+          />
         </Routes>
       </main>
 
