@@ -1,21 +1,15 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RiSearchLine } from "@remixicon/react";
-
-import {
-  setQuery,
-  clearResults,
-  setPage,
-} from "../redux/features/searchSlice";
+import { resetHasMore } from "../redux/features/searchSlice";
+import { setQuery, clearResults, setPage } from "../redux/features/searchSlice";
 
 const SearchBar = () => {
   const [input, setInput] = useState("");
 
   const dispatch = useDispatch();
 
-  const currentQuery = useSelector(
-    (store) => store.search.query
-  );
+  const currentQuery = useSelector((store) => store.search.query);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -29,6 +23,8 @@ const SearchBar = () => {
     dispatch(clearResults());
 
     dispatch(setPage(1));
+
+    dispatch(resetHasMore());
 
     dispatch(setQuery(trimmed));
   };

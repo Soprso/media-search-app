@@ -1,5 +1,3 @@
-import React from "react";
-
 import {
   useDispatch,
   useSelector,
@@ -9,6 +7,7 @@ import {
   setActiveTabs,
   clearResults,
   setPage,
+  resetHasMore,
 } from "../redux/features/searchSlice";
 
 const Tabs = () => {
@@ -29,6 +28,7 @@ const Tabs = () => {
 
     dispatch(clearResults());
     dispatch(setPage(1));
+    dispatch(resetHasMore());
     dispatch(setActiveTabs(tab));
   };
 

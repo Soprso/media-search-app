@@ -10,6 +10,7 @@ const searchSlice = createSlice({
     loading: false,
     error: null,
     page: 1,
+    hasMore: true,
   },
 
   reducers: {
@@ -52,6 +53,13 @@ const searchSlice = createSlice({
     appendResults(state, action) {
       state.results.push(...action.payload);
     },
+    setHasMore(state, action) {
+  state.hasMore = action.payload;
+},
+
+resetHasMore(state) {
+  state.hasMore = true;
+},
   },
 });
 
@@ -66,6 +74,8 @@ export const {
   nextPage,
   prevPage,
   appendResults,
+    setHasMore,
+  resetHasMore,
 } = searchSlice.actions;
 
 export default searchSlice.reducer;

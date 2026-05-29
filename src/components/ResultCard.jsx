@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import { useState, useRef } from "react";
 
 import {
   RiDownloadLine,
@@ -8,6 +8,13 @@ import {
 
 const ResultCard = ({ item }) => {
   const videoRef = useRef(null);
+  const [saved, setSaved] = useState(() => {
+    const collection =
+      JSON.parse(localStorage.getItem("collection")) || [];
+    return collection.some(
+      (data) => data.id === item.id
+    );
+  });
 
   // -----------------------------
   // Favorites / Collection
@@ -21,7 +28,10 @@ const ResultCard = ({ item }) => {
       (data) => data.id === item.id
     );
 
-    if (alreadyExists) return;
+    if (alreadyExists) {
+      setSaved(true);
+      return;
+    }
 
     const newData = [...oldData, item];
 
@@ -29,14 +39,9 @@ const ResultCard = ({ item }) => {
       "collection",
       JSON.stringify(newData)
     );
+
+    setSaved(true);
   };
-
-  const collection =
-    JSON.parse(localStorage.getItem("collection")) || [];
-
-  const isSaved = collection.some(
-    (data) => data.id === item.id
-  );
 
   // -----------------------------
   // Video Hover
@@ -62,6 +67,10 @@ const ResultCard = ({ item }) => {
     e.stopPropagation();
 
     try {
+      if (!item.src) {
+        throw new Error("Media source unavailable");
+      }
+
       const response = await fetch(item.src);
 
       const blob = await response.blob();
@@ -257,7 +266,7 @@ const ResultCard = ({ item }) => {
         cursor-pointer
         "
       >
-        {isSaved ? (
+        {saved ? (
           <RiBookmarkFill size={18} />
         ) : (
           <RiBookmarkLine size={18} />

@@ -1,14 +1,11 @@
-const UNSPLASH_KEY = import.meta.env.VITE_UNSPLASH_KEY;
 const PEXEL_KEY = import.meta.env.VITE_PEXELS_KEY;
 const GIPHY_KEY = import.meta.env.VITE_GIPHY_KEY;
 
 const GIPHY_BASE_URL = "https://api.giphy.com/v1/gifs";
 
-const BASE_URL = "https://api.unsplash.com";
-
 const PEXEL_BASE_URL = "https://api.pexels.com";
 
-export const fetchPhotos = async (query, page = 1, per_page = 30) => {
+export const fetchPhotos = async (query, page = 1, per_page = 60) => {
   try {
     if (!query?.trim()) {
       throw new Error("Search query required");
@@ -40,7 +37,7 @@ export const fetchPhotos = async (query, page = 1, per_page = 30) => {
     throw error;
   }
 };
-export const fetchVideos = async (query, page = 1, per_page = 20) => {
+export const fetchVideos = async (query, page = 1, per_page = 15) => {
   try {
     // console.log("PEXEL_KEY:", PEXEL_KEY)
     if (!query?.trim()) {
@@ -75,7 +72,7 @@ export const fetchVideos = async (query, page = 1, per_page = 20) => {
   }
 };
 
-export const fetchGifs = async (query, page = 1, limit = 30) => {
+export const fetchGifs = async (query, page = 1, limit = 60) => {
   try {
     if (!query?.trim()) {
       throw new Error("Search query required");

@@ -1,16 +1,11 @@
-import { Routes, Route, Link, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 
 import HomePage from "./pages/HomePage";
 import CollectionPage from "./pages/CollectionPage";
 
-import { RiSearchLine, RiBookmarkLine } from "@remixicon/react";
-
-import logo from "./assets/ms-icon.png";
 import Navbar from "./components/Navbar";
 
 const App = () => {
-  const location = useLocation();
-
   return (
     <div
       className="

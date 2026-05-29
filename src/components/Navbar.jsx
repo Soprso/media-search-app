@@ -1,10 +1,13 @@
 import logo from "../assets/ms-icon.png";
-import { Routes, Route, Link, useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { RiSearchLine, RiBookmarkLine } from "@remixicon/react";
+
 const Navbar = () => {
+  const location = useLocation();
+
   return (
     <div>
-       {/* Sidebar */}
+      {/* Sidebar */}
 
       <aside
         className="
@@ -81,9 +84,8 @@ const Navbar = () => {
           </Link>
         </nav>
       </aside>
-
     </div>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;
