@@ -1,45 +1,38 @@
-import ResultGrid from "./components/ResultGrid";
-import SearchBar from "./components/SearchBar";
-import Tabs from "./components/Tabs";
-import Pagination from "./components/Pagination";
+import { Routes, Route, Link, useLocation } from "react-router-dom";
+
+import HomePage from "./pages/HomePage";
+import CollectionPage from "./pages/CollectionPage";
+
+import { RiSearchLine, RiBookmarkLine } from "@remixicon/react";
+
+import logo from "./assets/ms-icon.png";
+import Navbar from "./components/Navbar";
 
 const App = () => {
+  const location = useLocation();
+
   return (
     <div
       className="
       min-h-screen
-      bg-gray-950
-      text-white
+      bg-white
+      flex
       "
     >
-      <div
+     <Navbar></Navbar>
+      {/* Main Content */}
+
+      <main
         className="
-        max-w-7xl
-        mx-auto
+        flex-1
+        overflow-x-hidden
         "
       >
-        {/* Search */}
-        <div
-          className="
-          mb-6
-          "
-        >
-          <SearchBar />
-        </div>
-
-        {/* Tabs */}
-        <div
-          className="
-          mb-10
-          "
-        >
-          <Tabs />
-        </div>
-
-        {/* Results */}
-        <ResultGrid />
-        <Pagination />
-      </div>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/collection" element={<CollectionPage />} />
+        </Routes>
+      </main>
     </div>
   );
 };

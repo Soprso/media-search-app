@@ -49,6 +49,9 @@ const searchSlice = createSlice({
         state.page -= 1;
       }
     },
+    appendResults(state, action) {
+      state.results.push(...action.payload);
+    },
   },
 });
 
@@ -62,6 +65,7 @@ export const {
   setPage,
   nextPage,
   prevPage,
+  appendResults,
 } = searchSlice.actions;
 
 export default searchSlice.reducer;
