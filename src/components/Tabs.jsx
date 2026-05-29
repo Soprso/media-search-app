@@ -4,10 +4,7 @@ import {
 } from "react-redux";
 
 import {
-  setActiveTabs,
-  clearResults,
-  setPage,
-  resetHasMore,
+  switchTab,
 } from "../redux/features/searchSlice";
 
 const Tabs = () => {
@@ -26,10 +23,7 @@ const Tabs = () => {
   const handleTabChange = (tab) => {
     if (tab === activeTab) return;
 
-    dispatch(clearResults());
-    dispatch(setPage(1));
-    dispatch(resetHasMore());
-    dispatch(setActiveTabs(tab));
+    dispatch(switchTab(tab));
   };
 
   return (
@@ -37,11 +31,14 @@ const Tabs = () => {
       className="
       flex
       items-center
-
-      gap-8
-
-      px-4
-      py-4
+      gap-5
+      sm:gap-8
+      overflow-x-auto
+      whitespace-nowrap
+      px-3
+      sm:px-4
+      py-3
+      sm:py-4
       "
     >
       {tabs.map((elem) => {
@@ -71,13 +68,17 @@ const Tabs = () => {
                 isActive
                   ? `
                   text-blue-600
+                  dark:text-blue-400
                   border-blue-600
+                  dark:border-blue-400
                   `
                   : `
                   text-gray-500
+                  dark:text-slate-400
                   border-transparent
 
                   hover:text-gray-800
+                  dark:hover:text-slate-100
                   `
               }
             `}

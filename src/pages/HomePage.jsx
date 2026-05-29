@@ -23,7 +23,7 @@ const HomePage = () => {
         mx-auto
         "
       >
-        <div className=" py-4 ">
+        <div className="py-3 sm:py-4">
           <SearchBar />
         </div>
 
@@ -42,6 +42,7 @@ const HomePage = () => {
             flex
             items-center
             justify-center
+            px-5
             h-[60vh]
             "
           >
@@ -52,9 +53,11 @@ const HomePage = () => {
             >
               <h2
                 className="
-                text-3xl
+                text-2xl
+                sm:text-3xl
                 font-bold
                 text-gray-800
+                dark:text-slate-100
                 mb-3
                 "
               >
@@ -63,7 +66,10 @@ const HomePage = () => {
 
               <p
                 className="
+                text-sm
+                sm:text-base
                 text-gray-500
+                dark:text-slate-400
                 "
               >
                 Start by entering a keyword above.

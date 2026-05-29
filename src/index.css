@@ -1,1 +1,15 @@
+@custom-variant dark (&:where(.dark, .dark *));
+
 @import "tailwindcss";
+
+:root {
+  font-family: "Manrope", "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+body {
+  font-family: inherit;
+}
+
+.Toastify__toast {
+  font-family: inherit;
+}

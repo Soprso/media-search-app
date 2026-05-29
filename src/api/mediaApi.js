@@ -5,7 +5,12 @@ const GIPHY_BASE_URL = "https://api.giphy.com/v1/gifs";
 
 const PEXEL_BASE_URL = "https://api.pexels.com";
 
-export const fetchPhotos = async (query, page = 1, per_page = 60) => {
+export const fetchPhotos = async (
+  query,
+  page = 1,
+  per_page = 60,
+  signal
+) => {
   try {
     if (!query?.trim()) {
       throw new Error("Search query required");
@@ -22,6 +27,7 @@ export const fetchPhotos = async (query, page = 1, per_page = 60) => {
       headers: {
         Authorization: PEXEL_KEY,
       },
+      signal,
     });
 
     const data = await response.json();
@@ -32,12 +38,19 @@ export const fetchPhotos = async (query, page = 1, per_page = 60) => {
 
     return data;
   } catch (error) {
-    console.error("PEXELS PHOTO ERROR:", error);
+    if (error?.name !== "AbortError") {
+      console.error("PEXELS PHOTO ERROR:", error);
+    }
 
     throw error;
   }
 };
-export const fetchVideos = async (query, page = 1, per_page = 15) => {
+export const fetchVideos = async (
+  query,
+  page = 1,
+  per_page = 15,
+  signal
+) => {
   try {
     // console.log("PEXEL_KEY:", PEXEL_KEY)
     if (!query?.trim()) {
@@ -56,6 +69,7 @@ export const fetchVideos = async (query, page = 1, per_page = 15) => {
       headers: {
         Authorization: PEXEL_KEY,
       },
+      signal,
     });
 
     const data = await response.json();
@@ -66,13 +80,20 @@ export const fetchVideos = async (query, page = 1, per_page = 15) => {
 
     return data;
   } catch (error) {
-    console.log("PEXEL ERROR:", error);
+    if (error?.name !== "AbortError") {
+      console.log("PEXEL ERROR:", error);
+    }
 
     throw error;
   }
 };
 
-export const fetchGifs = async (query, page = 1, limit = 60) => {
+export const fetchGifs = async (
+  query,
+  page = 1,
+  limit = 60,
+  signal
+) => {
   try {
     if (!query?.trim()) {
       throw new Error("Search query required");
@@ -92,6 +113,7 @@ export const fetchGifs = async (query, page = 1, limit = 60) => {
       headers: {
         "Content-Type": "application/json",
       },
+      signal,
     });
 
     const data = await response.json();
@@ -102,7 +124,9 @@ export const fetchGifs = async (query, page = 1, limit = 60) => {
 
     return data;
   } catch (error) {
-    console.error("GIPHY ERROR:", error);
+    if (error?.name !== "AbortError") {
+      console.error("GIPHY ERROR:", error);
+    }
 
     throw error;
   }

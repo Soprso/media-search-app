@@ -17,9 +17,23 @@ const searchSlice = createSlice({
     setQuery(state, action) {
       state.query = action.payload;
     },
+    startSearch(state, action) {
+      state.query = action.payload;
+      state.results = [];
+      state.page = 1;
+      state.hasMore = true;
+      state.error = null;
+    },
 
     setActiveTabs(state, action) {
       state.activeTab = action.payload;
+    },
+    switchTab(state, action) {
+      state.activeTab = action.payload;
+      state.results = [];
+      state.page = 1;
+      state.hasMore = true;
+      state.error = null;
     },
 
     setResults(state, action) {
@@ -65,7 +79,9 @@ resetHasMore(state) {
 
 export const {
   setQuery,
+  startSearch,
   setActiveTabs,
+  switchTab,
   setLoading,
   setResults,
   setError,

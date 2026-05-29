@@ -1,8 +1,7 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { RiSearchLine } from "@remixicon/react";
-import { resetHasMore } from "../redux/features/searchSlice";
-import { setQuery, clearResults, setPage } from "../redux/features/searchSlice";
+import { startSearch } from "../redux/features/searchSlice";
 
 const SearchBar = () => {
   const [input, setInput] = useState("");
@@ -20,13 +19,7 @@ const SearchBar = () => {
 
     if (trimmed === currentQuery) return;
 
-    dispatch(clearResults());
-
-    dispatch(setPage(1));
-
-    dispatch(resetHasMore());
-
-    dispatch(setQuery(trimmed));
+    dispatch(startSearch(trimmed));
   };
 
   return (
@@ -37,7 +30,8 @@ const SearchBar = () => {
         relative
         min-w-full
         mx-auto
-        px-4
+        px-3
+        sm:px-4
         "
       >
         <input
@@ -45,27 +39,35 @@ const SearchBar = () => {
           required
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          placeholder="Search movies, music, books..."
+          placeholder="Search..."
           className="
           w-full
 
-          pl-14
-          pr-16
-          py-4
-          bg-gray-200
+          pl-4
+          pr-14
+          py-3
+          sm:py-4
+          bg-gray-100
+          dark:bg-slate-800
 
           rounded-2xl
 
           border
           border-gray-200
+          dark:border-slate-700
 
           text-gray-900
+          dark:text-slate-100
+          text-sm
+          sm:text-base
 
+          placeholder:text-gray-500
+          dark:placeholder:text-slate-400
           focus:outline-none
           focus:ring-4
           focus:ring-blue-100
+          dark:focus:ring-blue-900/50
           focus:border-blue-500
-          focus:border-4
           transition-all
           duration-200
           "
@@ -75,7 +77,8 @@ const SearchBar = () => {
           type="submit"
           className="
           absolute
-          right-8
+          right-6
+          sm:right-8
           top-1/2
           -translate-y-1/2
 
@@ -89,8 +92,9 @@ const SearchBar = () => {
           rounded-full
 
           text-blue-600
+          dark:text-blue-400
           hover:text-blue-700
-          hover:scale-150
+          md:hover:scale-110
 
           transition-all
           duration-200
