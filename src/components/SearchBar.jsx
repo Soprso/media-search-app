@@ -1,10 +1,11 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { RiSearchLine } from "@remixicon/react";
+import { RiCloseLine, RiSearchLine } from "@remixicon/react";
 import { startSearch } from "../redux/features/searchSlice";
 
 const SearchBar = () => {
   const [input, setInput] = useState("");
+  const inputRef = useRef(null);
 
   const dispatch = useDispatch();
 
@@ -22,6 +23,11 @@ const SearchBar = () => {
     dispatch(startSearch(trimmed));
   };
 
+  const clearHandler = () => {
+    setInput("");
+    inputRef.current?.focus();
+  };
+
   return (
     <div>
       <form
@@ -35,6 +41,7 @@ const SearchBar = () => {
         "
       >
         <input
+          ref={inputRef}
           type="text"
           required
           value={input}
@@ -44,7 +51,7 @@ const SearchBar = () => {
           w-full
 
           pl-4
-          pr-14
+          pr-24
           py-3
           sm:py-4
           bg-gray-100
@@ -72,6 +79,38 @@ const SearchBar = () => {
           duration-200
           "
         />
+
+        {input.length > 0 && (
+          <button
+            type="button"
+            onClick={clearHandler}
+            aria-label="Clear search input"
+            className="
+            absolute
+            right-16
+            sm:right-20
+            top-1/2
+            -translate-y-1/2
+
+            w-8
+            h-8
+            flex
+            items-center
+            justify-center
+            rounded-full
+
+            text-gray-500
+            dark:text-slate-400
+            hover:text-gray-700
+            dark:hover:text-slate-200
+            transition-colors
+            duration-200
+            cursor-pointer
+            "
+          >
+            <RiCloseLine size={16} />
+          </button>
+        )}
 
         <button
           type="submit"
